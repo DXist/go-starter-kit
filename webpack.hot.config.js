@@ -23,8 +23,8 @@ config.devServer = {
   stats: { colors: true },
   historyApiFallback: false,
   proxy: {'*': 'http://localhost:5000/'}
-}
+};
 
-config.devtool = 'eval'
+config.devtool = 'eval';
 
 module.exports = config;
