@@ -1,8 +1,9 @@
 import React from 'react';
 import Router from 'react-router';
-import FluxComponent from 'flummox/component';
-import Flux from '../flux';
+import assign from 'lodash/object/assign';
+import {Provider} from 'react-redux';
 import Helmet from 'react-helmet';
+
 import routes from './routes';
 import loadProps from '#app/utils/loadProps';
 import html from './html';
@@ -46,24 +47,24 @@ export default function (options, cbk) {
       }
     });
 
-    const flux = new Flux();
-    flux.getStore('app').setAppConfig(conf);
+    import store from '../store';
+    //flux.getStore('app').setAppConfig(conf);
 
     try {
       router.run((Handler, state) => {
-        const routeHandlerInfo = { flux, state };
-        loadProps(state.routes, 'loadProps', routeHandlerInfo).then(()=> {
+        const routeHandlerInfo = {store, state};
+        loadProps(state.routes, 'loadProps', routeHandlerInfo).then(() => {
           const app = React.renderToString(
-            <FluxComponent flux={flux}>
-              <Handler />
-            </FluxComponent>
+            <Provider store={store}>
+              {() => <Handler routerState={state}/>}
+            </Provider>
           );
           const head = Helmet.rewind();
           result.body = html({app, head});
           cbk(result);
         });
       });
-    } catch (error){
+    } catch (error) {
       if (error.redirect) {
         result.redirect = error.redirect;
       } else {

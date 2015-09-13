@@ -65,8 +65,10 @@ var config  = {
     alias: {
       '#app': path.join(__dirname, '/src/app/client'),
       '#c': path.join(__dirname, '/src/app/client/components'),
-      '#s': path.join(__dirname, '/src/app/client/stores'),
-      '#a': path.join(__dirname, '/src/app/client/actions')
+      '#s': path.join(__dirname, '/src/app/client/store'),
+      '#r': path.join(__dirname, '/src/app/client/reducers'),
+      '#a': path.join(__dirname, '/src/app/client/actions'),
+      '#utils': path.join(__dirname, '/src/app/client/utils')
     }
   },
   svgo1: {
