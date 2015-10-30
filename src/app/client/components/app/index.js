@@ -38,6 +38,7 @@ export default class App extends Component {
 
   render () {
     return <Html>
+      <Helmet title='Go + React = rocks!' />
       <RouteHandler {...this.props} />
     </Html>
   }

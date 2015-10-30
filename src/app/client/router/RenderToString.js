@@ -48,7 +48,6 @@ export default function (options, cbk) {
     });
 
     import store from '../store';
-    //flux.getStore('app').setAppConfig(conf);
 
     try {
       router.run((Handler, state) => {
