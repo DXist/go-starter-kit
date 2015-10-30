@@ -42,6 +42,6 @@ $(BINDATA):
 	$(BIN)/go-bindata $(BINDATA_FLAGS) -o=$@ src/app/server/data/...
 
 lint:
-	@eslint src/app/client || true
+	@$(NODE_BIN)/eslint src/app/client || true
 	@golint $(filter-out src/app/main.go, $(GO_FILES)) || true
 	@golint -min_confidence=1 app
